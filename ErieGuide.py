@@ -1,15 +1,9 @@
 import math
-##from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
-##from datasets import load_dataset
-import torch
-#from pydub import AudioSegment
-#from pydub.playback import play
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import chromadb
 import os
-#import pyttsx3
+import pyttsx3
 import ollama
-import logging
 
 
 # Defines the different agents depending on th aspect of Erie you would like a guide to, history, food, or nature stops will be the focus for this project
@@ -34,14 +28,34 @@ agents = {
     }
 }
 
-# Function to initialize pyttsx3
-#def initialize_tts_engine():
-#   engine = pyttsx3.init()
-#    engine.setProperty("rate", 150)
-#    return engine
+# Chnaged the engine to intialize a different voice for each agent, including Linda who I had to add via the settings
+def initialize_tts_engine(agent_name):
+    engine = pyttsx3.init()
+    engine.setProperty("rate", 150)
 
+    voices = engine.getProperty('voices')
+
+    
+    if "Tom" in agent_name:
+        for voice in voices:
+            if "David" in voice.name:
+                engine.setProperty('voice', voice.id)
+                break
+    elif "Michelle" in agent_name:
+        for voice in voices:
+            if "Zira" in voice.name:
+                engine.setProperty('voice', voice.id)
+                break
+    elif "Julie" in agent_name:
+        for voice in voices:
+            if "Linda" in voice.name:
+                engine.setProperty('voice', voice.id)
+                break
+
+    return engine
 
 # Loads and Chunks the document I stored with resources from the Internet, giving rough outline to what landmarks and locaions should be highlighted
+# Based on the RAG lab implementation
 def load_and_chunk_document(file_path, chunk_size=500, chunk_overlap=50):
     if not os.path.exists(file_path):
         print(f"Error: File {file_path} not found.")
@@ -87,12 +101,12 @@ def retrieve_context(collection, query, n_results=3):
     return [doc for doc_list in results.get("documents", []) for doc in doc_list]
 
 # Updated text-to-speech function using pyttsx3
-#def text_to_speech(text, tts_engine):
-#    try:
-#        tts_engine.say(text)
-#        tts_engine.runAndWait()
-#    except Exception as e:
-#       print(f"Error during text-to-speech: {e}")
+def text_to_speech(text, tts_engine):
+    try:
+        tts_engine.say(text)
+        tts_engine.runAndWait()
+    except Exception as e:
+       print(f"Error during text-to-speech: {e}")
 
 # Basic Haverine function used to alculate the distance from the campus
 def haversine_distance(lat1, lng1, lat2, lng2):
@@ -137,9 +151,9 @@ def select_guide_type():
     choice = input("Enter the number of your chosen guide: ")
     return agents.get(choice, agents["1"])
 
-# Main chat loop
+# Main function
 def main():
-##    tts_engine = initialize_tts_engine()
+    
 
     guide_path = "C:/Users/labadmin/game 450/spring2025-labs/FinalProject441/Erie_guide.txt"  # Local tour guide data
     guide_chunks = load_and_chunk_document(guide_path)
@@ -151,6 +165,7 @@ def main():
     collection = setup_chroma_db(guide_chunks)
 
     selected_agent = select_guide_type()
+    tts_engine = initialize_tts_engine(selected_agent['name'])
     model = 'llama3.2'
     messages = [{'role': 'system', 'content': selected_agent['system_prompt']}]
     options = {
@@ -178,7 +193,7 @@ def main():
         # Call to the tool based on the AI's response
         response_text = append_distance_to_coordinates(response.message.content, behrend_coords)
         print(f"Guide: {response_text}")
-##        text_to_speech(response.message.content, tts_engine)
+        text_to_speech(response.message.content, tts_engine)
 
 if __name__ == "__main__":
     main()
