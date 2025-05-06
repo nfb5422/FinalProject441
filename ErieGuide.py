@@ -1,14 +1,14 @@
 import math
 import random
-from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
-from datasets import load_dataset
+##from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
+##from datasets import load_dataset
 import torch
-from pydub import AudioSegment
-from pydub.playback import play
+#from pydub import AudioSegment
+#from pydub.playback import play
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import chromadb
 import os
-import pyttsx3
+#import pyttsx3
 import ollama
 import logging
 import warnings
@@ -21,32 +21,29 @@ agents = {
     "1": {
         "name": "Historic Erie Guide",
         "system_prompt": "You are a knowledgeable and friendly tour guide for Erie, Pennsylvania. You specialize in local history and think step-by-step to explain notable landmarks and historical events in the city.",
-        "temperature": 0.5,
+        "temperature": 0.2,
         "max_tokens": 100
     },
     "2": {
         "name": "Food Enthusiast",
-        "system_prompt": "You are a lively Erie local who loves food and local food spots in Erie, PA. You guide users through the best places to eat, drink, and enjoy local foodie culture based on the local food joints.",
-        "temperature": 0.7,
+        "system_prompt": "Your name is Tom and you are a foodie expert for Erie. You are a lively Erie local who loves food and local food spots in Erie, PA. You guide users through the best places to eat, drink, and enjoy local foodie culture based on the local food joints. Your reccomendations",
+        "temperature": 0.2,
         "max_tokens": 100
     },
     "3": {
         "name": "Nature and Outdoor Expert",
         "system_prompt": "You are an enthusiastic outdoor guide focused on Erie’s nature. You provide step-by-step tips for exploring parks, trails, Presque Isle State Park, and other outdoor destinations.",
-        "temperature": 0.6,
+        "temperature": 0.2,
         "max_tokens": 100
     }
 }
 
 # Function to initialize pyttsx3
-def initialize_tts_engine():
-    engine = pyttsx3.init()
-    engine.setProperty("rate", 150)
-    return engine
+#def initialize_tts_engine():
+#   engine = pyttsx3.init()
+#    engine.setProperty("rate", 150)
+#    return engine
 
-# Function to generate a random ticket number (for potential future features)
-def generate_ticket_number():
-    return f"TICKET-{random.randint(100000, 999999)}"
 
 # Load and chunk Erie guide file for RAG
 def load_and_chunk_document(file_path, chunk_size=500, chunk_overlap=50):
@@ -94,12 +91,47 @@ def retrieve_context(collection, query, n_results=3):
     return [doc for doc_list in results.get("documents", []) for doc in doc_list]
 
 # Updated text-to-speech function using pyttsx3
-def text_to_speech(text, tts_engine):
-    try:
-        tts_engine.say(text)
-        tts_engine.runAndWait()
-    except Exception as e:
-        print(f"Error during text-to-speech: {e}")
+#def text_to_speech(text, tts_engine):
+#    try:
+#        tts_engine.say(text)
+#        tts_engine.runAndWait()
+#    except Exception as e:
+#       print(f"Error during text-to-speech: {e}")
+
+# def calculate_distance_from_behrend(location_name):
+#     # Example lat/lng coordinates (Behrend's location)
+#     behrend_lat = 42.1297
+#     behrend_lng = -80.0851
+
+#     # Example landmarks' lat/lng (these would be extracted from your guide)
+#     landmarks = {
+#         "Presque Isle State Park": (42.1083, -80.1500),
+#         "Erie Maritime Museum": (42.1314, -80.0852)
+#         # Add more landmarks and their coordinates here
+#     }
+
+#     if location_name not in landmarks:
+#         return "Unknown location"
+
+#     # Get coordinates of the selected location
+#     lat, lng = landmarks[location_name]
+
+#     # Calculate distance (Haversine formula or simplified formula)
+#     # Here we are using a simplified calculation for example purposes
+#     distance = ((lat - behrend_lat) ** 2 + (lng - behrend_lng) ** 2) ** 0.5
+#     return round(distance, 2)  # Distance in kilometers (simplified for demo)
+
+# # Tool that integrates into the agent system
+# def distance_tool(query):
+#     # Extract the location name from the query
+#     location_name = query.split("distance to")[-1].strip()
+
+#     # Call the distance calculation tool
+#     distance = calculate_distance_from_behrend(location_name)
+
+#     return f"The distance from Penn State Behrend to {location_name} is {distance} km."
+
+
 
 # Function to select an agent
 def select_agent():
@@ -111,9 +143,9 @@ def select_agent():
 
 # Main chat loop
 def main():
-    tts_engine = initialize_tts_engine()
+##    tts_engine = initialize_tts_engine()
 
-    guide_path = "Erie_guide.txt"  # Local tour guide data
+    guide_path = "C:/Users/labadmin/game 450/spring2025-labs/FinalProject441/Erie_guide.txt"  # Local tour guide data
     guide_chunks = load_and_chunk_document(guide_path)
 
     if not guide_chunks:
@@ -147,7 +179,7 @@ def main():
         response = ollama.chat(model=model, messages=messages, stream=False, options=options)
 
         print(f"Guide: {response.message.content}")
-        text_to_speech(response.message.content, tts_engine)
+##        text_to_speech(response.message.content, tts_engine)
 
 if __name__ == "__main__":
     main()
