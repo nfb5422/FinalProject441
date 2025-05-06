@@ -1,5 +1,4 @@
 import math
-import random
 ##from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
 ##from datasets import load_dataset
 import torch
@@ -11,29 +10,26 @@ import os
 #import pyttsx3
 import ollama
 import logging
-import warnings
 
-# Suppress warnings for better readability
-warnings.filterwarnings("ignore", message=".*tensor.storage.*")
 
-# Define tour guide agents with different personalities
+# Defines the different agents depending on th aspect of Erie you would like a guide to, history, food, or nature stops will be the focus for this project
 agents = {
     "1": {
-        "name": "Historic Erie Guide",
-        "system_prompt": "You are a knowledgeable and friendly tour guide for Erie, Pennsylvania. You specialize in local history and think step-by-step to explain notable landmarks and historical events in the city.",
-        "temperature": 0.2,
+        "name": "Tom, Historic Erie Guide",
+        "system_prompt": "You are a knowledgeable and friendly tour guide for Erie, Pennsylvania. You specialize in local history and think step-by-step to explain notable landmarks and historical events in the city. Your reccomendations should only consist of whats  relevant in the Erie_guide.txt whenever possible.  You should also list the coordinates everytime you introduce a new landmark or location, like **Presque Isle State Park (42.1115, -80.1513). Do not add any other symbols around the coordinates, make sure they follow the form  (42.1115, -80.1513)",
+        "temperature": 0.1,
         "max_tokens": 100
     },
     "2": {
-        "name": "Food Enthusiast",
-        "system_prompt": "Your name is Tom and you are a foodie expert for Erie. You are a lively Erie local who loves food and local food spots in Erie, PA. You guide users through the best places to eat, drink, and enjoy local foodie culture based on the local food joints. Your reccomendations",
-        "temperature": 0.2,
+        "name": "Michelle, Food Enthusiast",
+        "system_prompt": "You are a lively Erie local who loves food and local food spots in Erie, PA. You guide users through the best places to eat, drink, and enjoy local foodie culture based on the local food joints. Your reccomendations should only consist of whats relevant in the Erie_guide.txt whenever possible.  You should also list the coordinates everytime you introduce a new landmark or location, like **Presque Isle State Park (42.1115, -80.1513). Do not add any other symbols around the coordinates, make sure they follow the form  (42.1115, -80.1513)",
+        "temperature": 0.1,
         "max_tokens": 100
     },
     "3": {
-        "name": "Nature and Outdoor Expert",
-        "system_prompt": "You are an enthusiastic outdoor guide focused on Erie’s nature. You provide step-by-step tips for exploring parks, trails, Presque Isle State Park, and other outdoor destinations.",
-        "temperature": 0.2,
+        "name": "Julie, Nature and Outdoor Expert",
+        "system_prompt": "You are an enthusiastic outdoor guide focused on Erie’s nature. You provide step-by-step tips for exploring parks, trails, Presque Isle State Park, and other outdoor destinations. Your reccomendations should only consist of whats relevent in the Erie_guide.txt whenever possible. You should also list the coordinates everytime you introduce a new landmark or location, like **Presque Isle State Park (42.1115, -80.1513). Do not add any other symbols around the coordinates, make sure they follow the form  (42.1115, -80.1513)",
+        "temperature": 0.1,
         "max_tokens": 100
     }
 }
@@ -45,7 +41,7 @@ agents = {
 #    return engine
 
 
-# Load and chunk Erie guide file for RAG
+# Loads and Chunks the document I stored with resources from the Internet, giving rough outline to what landmarks and locaions should be highlighted
 def load_and_chunk_document(file_path, chunk_size=500, chunk_overlap=50):
     if not os.path.exists(file_path):
         print(f"Error: File {file_path} not found.")
@@ -70,7 +66,7 @@ def load_and_chunk_document(file_path, chunk_size=500, chunk_overlap=50):
     ]
     return chunks
 
-# Set up ChromaDB for RAG
+# Sets up chroma_db to use in the responses called "erie knowledge"
 def setup_chroma_db(chunks, collection_name="erie_knowledge"):
     client = chromadb.Client()
     try:
@@ -85,7 +81,7 @@ def setup_chroma_db(chunks, collection_name="erie_knowledge"):
     )
     return collection
 
-# Retrieve relevant context from ChromaDB
+# Gets what is important from the "erie knowledge"
 def retrieve_context(collection, query, n_results=3):
     results = collection.query(query_texts=[query], n_results=n_results)
     return [doc for doc_list in results.get("documents", []) for doc in doc_list]
@@ -98,43 +94,43 @@ def retrieve_context(collection, query, n_results=3):
 #    except Exception as e:
 #       print(f"Error during text-to-speech: {e}")
 
-# def calculate_distance_from_behrend(location_name):
-#     # Example lat/lng coordinates (Behrend's location)
-#     behrend_lat = 42.1297
-#     behrend_lng = -80.0851
+# Basic Haverine function used to alculate the distance from the campus
+def haversine_distance(lat1, lng1, lat2, lng2):
 
-#     # Example landmarks' lat/lng (these would be extracted from your guide)
-#     landmarks = {
-#         "Presque Isle State Park": (42.1083, -80.1500),
-#         "Erie Maritime Museum": (42.1314, -80.0852)
-#         # Add more landmarks and their coordinates here
-#     }
+    # Radius of the Earth in kilometers
+    R = 6371.0
+    # Convert degrees to radians
+    lat1_rad = math.radians(lat1)
+    lng1_rad = math.radians(lng1)
+    lat2_rad = math.radians(lat2)
+    lng2_rad = math.radians(lng2)
+    # Difference in coordinates
+    dlat = lat2_rad - lat1_rad
+    dlng = lng2_rad - lng1_rad
+    # Haversine formula
+    a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlng / 2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    # Distance in kilometers
+    return R * c
 
-#     if location_name not in landmarks:
-#         return "Unknown location"
+# Tool used to append the distance 
+def append_distance_to_coordinates(text, behrend_coords):
+    import re
 
-#     # Get coordinates of the selected location
-#     lat, lng = landmarks[location_name]
+    # Parses through to find the coordinates of the landmark
+    coord_pattern = r'\(([-+]?\d{1,2}\.\d+),\s*([-+]?\d{1,3}\.\d+)\)'
 
-#     # Calculate distance (Haversine formula or simplified formula)
-#     # Here we are using a simplified calculation for example purposes
-#     distance = ((lat - behrend_lat) ** 2 + (lng - behrend_lng) ** 2) ** 0.5
-#     return round(distance, 2)  # Distance in kilometers (simplified for demo)
+    def repl(match):
+        lat, lng = float(match.group(1)), float(match.group(2))
+        dist_km = haversine_distance(behrend_coords[0], behrend_coords[1], lat, lng)
+        dist_miles = dist_km * 0.621371
+        return f"({lat}, {lng}) (~{dist_miles:.1f} miles from Behrend Campus)"
 
-# # Tool that integrates into the agent system
-# def distance_tool(query):
-#     # Extract the location name from the query
-#     location_name = query.split("distance to")[-1].strip()
-
-#     # Call the distance calculation tool
-#     distance = calculate_distance_from_behrend(location_name)
-
-#     return f"The distance from Penn State Behrend to {location_name} is {distance} km."
+    return re.sub(coord_pattern, repl, text)
 
 
-
-# Function to select an agent
-def select_agent():
+# Function that selects the agent used in the run throguh of the project
+def select_guide_type():
     print("Select a tour guide personality for your Erie visit:")
     for key, agent in agents.items():
         print(f"{key}. {agent['name']}")
@@ -154,7 +150,7 @@ def main():
 
     collection = setup_chroma_db(guide_chunks)
 
-    selected_agent = select_agent()
+    selected_agent = select_guide_type()
     model = 'llama3.2'
     messages = [{'role': 'system', 'content': selected_agent['system_prompt']}]
     options = {
@@ -162,23 +158,26 @@ def main():
         'max_tokens': selected_agent['max_tokens']
     }
 
-    print(f"You are now exploring Erie with: {selected_agent['name']}. Type '/exit' to leave.")
+    print(f"Welcome Behrend Student! You are now exploring Erie with: {selected_agent['name']}. Type '/exit' to end the session.")
 
     while True:
         user_input = input("You: ")
 
         if user_input.strip().lower() == '/exit':
-            print("Guide: Safe travels! Enjoy your time in Erie!")
+            print("Guide: Safe travels! Enjoy your time in Erie! We Are!")
             break
 
         context = retrieve_context(collection, user_input)
         context_text = "\n\n".join(context) if context else "No relevant information found in the guide."
         user_input += f"\n\nContext: {context_text}"
-
+        # Coordinates for Penn State
+        behrend_coords = (42.1184, -80.0728)
         messages.append({'role': 'user', 'content': user_input})
         response = ollama.chat(model=model, messages=messages, stream=False, options=options)
 
-        print(f"Guide: {response.message.content}")
+        # Call to the tool based on the AI's response
+        response_text = append_distance_to_coordinates(response.message.content, behrend_coords)
+        print(f"Guide: {response_text}")
 ##        text_to_speech(response.message.content, tts_engine)
 
 if __name__ == "__main__":

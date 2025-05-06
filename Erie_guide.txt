@@ -3,121 +3,100 @@ Welcome to Erie, Pennsylvania — a city with a unique blend of rich history, cu
 
 ## Historic Destinations
 
-**Erie Maritime Museum and U.S. Brig Niagara
+**Erie Maritime Museum and U.S. Brig Niagara (42.1280, -80.0850)
 The Erie Maritime Museum is a cornerstone of the city's rich naval history. It features immersive exhibits on the War of 1812 and the legendary Battle of Lake Erie. The centerpiece is the U.S. Brig Niagara, a fully reconstructed tall ship that still sails today for educational voyages and special events. Visitors can board the ship, learn about 19th-century sailing life, and understand Erie's strategic role in American naval defense.
 
-**Presque Isle Lighthouse
+**Presque Isle Lighthouse (42.1072, -80.1776)
 Situated on the peninsula of Presque Isle State Park, this lighthouse was built in 1872 and has guided mariners on Lake Erie for over a century. Still operational and open for tours, the lighthouse provides panoramic views from the top and historical insights into Erie's shipping past. A small museum on-site details the evolution of lighthouse technology and the lives of its former keepers.
 
-**Watson-Curtze Mansion
+**Watson-Curtze Mansion (42.1305, -80.0854)
 A beautifully preserved Gilded Age estate, this mansion offers visitors a glimpse into the lifestyle of Erie's elite during the early 1900s. With stained glass windows, original furnishings, and lavish rooms, the Watson-Curtze Mansion is also home to the Erie County Historical Society. The basement even features a Victorian-era kitchen and servant quarters that reflect the social dynamics of the time.
 
-**Union Station
+**Union Station (42.1320, -80.0858)
 Built in 1927, Union Station was once a bustling hub for train travel between New York and Chicago. Its art deco design and expansive concourse still stand, now repurposed for commercial use, including a brewery and event spaces. The building's grandeur makes it a living relic of Erie's industrial prime, and it's often used as a backdrop for community festivals and historical reenactments.
 
-**Erie Land Lighthouse
+**Erie Land Lighthouse (42.1307, -80.0851)
 First lit in 1818, the Erie Land Lighthouse is the oldest on the Great Lakes. It has been rebuilt several times, but still stands today as a powerful symbol of Erie’s maritime roots. Its 49-foot stone tower once held a whale oil lamp visible for miles and now serves as a popular site for history buffs and photographers.
 
-**Historic Little Italy District
+**Historic Little Italy District (42.1278, -80.0864)
 A vibrant neighborhood shaped by early Italian immigrants, Little Italy retains much of its old-world charm. Historic homes, murals, family-run businesses, and the enduring Saint Paul Church embody the rich cultural legacy. In the summer, the district hosts Italian festivals with traditional food, live music, and bocce tournaments.
 
-**Erie Cemetery
+**Erie Cemetery (42.1299, -80.0916)
 Established in 1850, Erie Cemetery offers a tranquil, reflective walk through Erie's past. Its winding paths, Gothic mausoleums, and Civil War veteran graves make it both somber and historically rich. The site includes the resting places of several influential figures in Erie’s development, including former mayors, entrepreneurs, and inventors.
 
-**Glenwood Park and Historical Society Grounds
+**Glenwood Park and Historical Society Grounds (42.1214, -80.0853)
 Adjacent to the mansion, this area hosts period homes, barns, and relocated buildings from early Erie life. It often hosts living history events and Civil War reenactments. Children and families can experience 1800s trades like blacksmithing and weaving during seasonal festivals.
 
-**Dickson Tavern
+**Dickson Tavern (42.1334, -80.0857)
 Once an inn for frontier travelers and politicians, the Dickson Tavern is believed to be the oldest surviving building in Erie, constructed around 1815. Though no longer operational as a tavern, the building is on the National Register of Historic Places and is a touchstone for early Erie's hospitality history.
 
-**Hammermill Paper Company Ruins & Memorial
+**Hammermill Paper Company Ruins & Memorial (42.1400, -80.0970)
 A lesser-known historical landmark, the Hammermill ruins tell the story of Erie’s industrial might. Founded in 1898, the paper company employed thousands and contributed significantly to the city's growth. Though now dismantled, a memorial in the area honors its legacy with photos, plaques, and oral histories collected from former employees.
 
 ### FOODIE DESTINATIONS
 
-**Sara’s Restaurant
+**Sara’s Restaurant (42.1062, -80.1741)
 A retro drive-in that locals and tourists love for Smith’s hot dogs, orange sherbet, and curly fries. Open seasonally, it’s a rite of passage before a day at Presque Isle.
 
-**Lucky Louie’s Beer and Wieners
+**Lucky Louie’s Beer and Wieners (42.1285, -80.0871)
 Home to 50+ hot dog creations with wild toppings, this pub is popular with college students and food adventurers alike. Offers unique beer pairings with your dog.
 
-**Pineapple Eddie Southern Bistro
+**Pineapple Eddie Southern Bistro (42.1313, -80.0904)
 Run by a mother-daughter team, this restaurant combines Caribbean spice with Southern soul. Known for chicken and waffles, jerk dishes, and pineapple cornbread.
 
-**Federal Hill Smokehouse
+**Federal Hill Smokehouse (42.1304, -80.0936)
 Voted one of the top BBQ spots in Pennsylvania, it features low-and-slow smoked brisket, pulled pork, and tangy vinegar slaw. Lines form early, and food often sells out.
 
-**Molly Brannigan’s Irish Pub
+**Molly Brannigan’s Irish Pub (42.1302, -80.0897)
 An authentic Irish pub imported piece by piece from Ireland. Their Guinness shepherd’s pie, corned beef, and warm bread pudding make it a winter favorite.
 
-**The Brewerie at Union Station
+**The Brewerie at Union Station (42.1321, -80.0862)
 Set inside Erie’s old train station, this brewpub offers craft beers with names inspired by local history, trivia nights, and outdoor patio seating during warmer months.
 
-**Andora’s Bubble Tea Shop
+**Andora’s Bubble Tea Shop (42.1290, -80.0873)
 Located in downtown Erie, Andora’s specializes in handcrafted boba drinks, mochi, bao buns, and a chill artsy vibe popular among students.
 
-**Romolo Chocolates
+**Romolo Chocolates (42.1300, -80.0915)
 Founded in 1994, this family-run chocolatier crafts everything from truffles to sponge candy using European methods. A great place for gifts or tours.
 
-**Lavery Brewing Company
+**Lavery Brewing Company (42.1323, -80.0867)
 An experimental local brewery pushing bold styles like jalapeño cream ale or bourbon-aged stouts. Dog-friendly patio and live music nights.
 
-**Like My Thai
+**Like My Thai (42.1303, -80.0856)
 A hidden gem with Laotian and Thai specialties like pho, drunken noodles, and coconut curry. Small, casual, and packed with flavor.
 
-**Pressed Café
+**Pressed Café (42.1315, -80.0878)
 A hip coffee shop downtown with high-end espresso drinks, homemade pastries, and seasonal toast specials.
 
 ### NATURE & OUTDOORS
 
-**Presque Isle State Park
+**Presque Isle State Park (42.1115, -80.1513)
 Pennsylvania’s most visited state park is a 3,200-acre sandy peninsula with 11 miles of beaches, birdwatching hotspots, hiking and biking trails, kayak rentals, and year-round events like ice fishing and kite festivals.
 
-**Asbury Woods
+**Asbury Woods (42.1077, -80.1407)
 A 205-acre nature preserve with old-growth forests, a nature center, and environmental education programming. Features groomed winter trails and maple syrup production in the spring.
 
-**Tom Ridge Environmental Center (TREC)
+**Tom Ridge Environmental Center (TREC) (42.1074, -80.1390)
 An interactive learning space about Presque Isle’s fragile ecosystem. The rooftop tower offers expansive views and the center hosts nature talks, films, and exhibits.
 
-**Bayfront Connector Trail
+**Bayfront Connector Trail (42.1322, -80.0906)
 A paved walking/biking trail that connects downtown Erie with the waterfront, scenic views of Presque Isle Bay, and access to outdoor art installations.
 
-**Wintergreen Gorge
+**Wintergreen Gorge (42.1060, -80.0847)
 Located near Penn State Behrend, this lush ravine features waterfalls, steep cliffs, and rare plant species. Popular for hiking, photography, and geology fieldwork.
 
-**Lake Erie Arboretum at Frontier Park (LEAF)
+**Lake Erie Arboretum at Frontier Park (LEAF) (42.1264, -80.0861)
 Showcasing dozens of native and imported tree species with walking paths, educational markers, and live performances during the LEAF Festival.
 
-**Scott Park Disc Golf Course
+**Scott Park Disc Golf Course (42.1294, -80.0849)
 A well-maintained disc golf course for locals and visitors looking for a casual outdoor game near Lake Pleasant.
 
-**Harborcreek Community Park
+**Harborcreek Community Park (42.1190, -80.0602)
 Offers soccer fields, forested trails, and picnic shelters with access to creeks and wooded exploration just east of the city.
 
-**North Pier Light
+**North Pier Light (42.1235, -80.0993)
 A small steel lighthouse at the entrance to Erie Harbor. Ideal for sunset photos and a quick walk near the marina.
 
-### COMMUNITY & CULTURE
-
-**Celebrate Erie:** An annual summer festival celebrating local music, food, and art, held in downtown Erie.
-
-**Erie Art Museum:** Located downtown, it hosts regional and national exhibitions and offers workshops and events year-round.
-
-**Erie Playhouse:** One of the oldest community theaters in the U.S., putting on musicals, dramas, and family performances.
-
-**Lake Erie Ballet and Erie Philharmonic:** Together they keep classical music and dance vibrant in Erie with regular performances.
-
-**Erie County Public Library - Blasco Library:** A hub for knowledge and local history with views of the Bayfront and a maritime-themed children’s section.
-
-**Downtown Mural Trail:** Dozens of public art murals created by local artists, each with its own backstory and vibrant color palette.
-
-**Bayfront Convention Center:** A modern venue hosting expos, conferences, and local business showcases, set against the lake.
-
-**Local Farmers Markets:** The West Bayfront, Little Italy, and Hill District all host seasonal farmers markets full of local produce and homemade goods.
-
-**UPMC Park:** Home to the Erie SeaWolves, a minor league baseball team with fireworks, family nights, and local food vendors.
-
-**Erie Insurance Arena:** A central venue for concerts, hockey, and community gatherings, from big-name artists to local high school championships.
 
 ### ODDS & ENDS
 
